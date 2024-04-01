@@ -48,17 +48,17 @@ int main(int argc, char **argv)
     namedWindow("Display Image", WINDOW_AUTOSIZE);
     imshow("Display Image", image);
 
-    Mat f1,f2;
-    blur5x5_1(image, f1);
-    imshow("f1", f1);
-    blur5x5_2(image, f2);
-    imshow("f2", f2);
+    // Mat f1,f2;
+    // blur5x5_1(image, f1);
+    // imshow("f1", f1);
+    // blur5x5_2(image, f2);
+    // imshow("f2", f2);
 
-    Mat f1,f2;
-    sepiatone1(image, f1);
-    imshow("f1", f1);
-    sepiatone2(image, f2);
-    imshow("f2", f2);
+    // Mat f1,f2;
+    // sepiatone1(image, f1);
+    // imshow("f1", f1);
+    // sepiatone2(image, f2);
+    // imshow("f2", f2);
     
 
     Mat x,y,absX,absY;
@@ -68,37 +68,39 @@ int main(int argc, char **argv)
     // convert [-255,255] to [0,255]
     convertScaleAbs(x,absX);
     convertScaleAbs(y,absY);
-    // visualize the Sobel outputs as separate variables.
-    imshow("sobelX", absX);
-    imshow("sobelY", absY);
+
+    // // visualize the Sobel outputs as separate variables.
+    // imshow("sobelX", absX);
+    // imshow("sobelY", absY);
 
 
     // 'm' key shows the color gradient magnitude image.
     Mat gradientImg;
-    magnitude(absX,absY,gradientImg);
-    imshow("gradient", absX);
+    magnitude(x,y,gradientImg);
+    imshow("gradient", gradientImg);
 
+    imwrite("gradient.jpg",gradientImg);
 
-    // 'the 'l' key displays 'blurQuantize image.
-    Mat blurQuantizedImg;
-    blurQuantize(image, blurQuantizedImg, 10);
-    imshow("blurQuantize", blurQuantizedImg);
+    // // 'the 'l' key displays 'blurQuantize image.
+    // Mat blurQuantizedImg;
+    // blurQuantize(image, blurQuantizedImg, 10);
+    // imshow("blurQuantize", blurQuantizedImg);
 
-    Mat cartoonized;
-    cartoonize(image, cartoonized);
-    imshow("cartoonize", cartoonized);
+    // Mat cartoonized;
+    // cartoonize(image, cartoonized);
+    // imshow("cartoonize", cartoonized);
 
-    cv::Mat luminanceQuantized;
-    luminanceQuantization(image,luminanceQuantized,4);
-    imshow("luminance Quantized", luminanceQuantized);
+    // cv::Mat luminanceQuantized;
+    // luminanceQuantization(image,luminanceQuantized,4);
+    // imshow("luminance Quantized", luminanceQuantized);
 
-    cv::Mat edge;
-    edgeDetection(image,edge);
-    imshow("edge", edge);
+    // cv::Mat edge;
+    // edgeDetection(image,edge);
+    // imshow("edge", edge);
 
-    cv::Mat cartoonized;
-    cartoonize(image,cartoonized);
-    imshow("cartoonize", cartoonized);
+    // cv::Mat cartoonized;
+    // cartoonize(image,cartoonized);
+    // imshow("cartoonize", cartoonized);
 
     waitKey(0);
     return(0);

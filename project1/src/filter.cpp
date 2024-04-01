@@ -365,8 +365,11 @@ int magnitude( cv::Mat &sx, cv::Mat &sy, cv::Mat &dst ){
     for (int row = 0; row < sx.rows; ++row){
         for (int col = 0; col < sx.cols; ++col) {
             for (int ch = 0; ch < 3; ++ch){
-                short gx = sx.at<Vec3s>(row,col)[ch];
-                short gy = sy.at<Vec3s>(row,col)[ch];
+                // CORRECTED: add data type conversion
+                float gx = static_cast<float>(sx.at<Vec3s>(row,col)[ch]);
+                float gy = static_cast<float>(sy.at<Vec3f>(row,col)[ch]);
+                // short gx = sx.at<Vec3s>(row,col)[ch];
+                // short gy = sy.at<Vec3s>(row,col)[ch];
                 int distance  = static_cast<int>(std::sqrt(gx*gx + gy*gy));
 
                 dst.at<Vec3b>(row,col)[ch] = std::min(255,distance);
